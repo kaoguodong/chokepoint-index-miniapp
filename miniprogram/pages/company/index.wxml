@@ -1,0 +1,64 @@
+<view class="container company-page">
+  <block wx:if="{{loading}}">
+    <view class="loading panel">正在读取标的卡片...</view>
+  </block>
+
+  <block wx:elif="{{!company}}">
+    <view class="empty panel">
+      <view class="empty-title">未找到标的</view>
+      <view class="empty-copy">请从首页或细分板块页重新进入。</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="hero panel">
+      <view class="hero-top">
+        <view>
+          <view class="ticker">{{company.ticker}}</view>
+          <view class="name">{{company.name}}</view>
+          <view class="role">{{company.role}}</view>
+        </view>
+        <view class="score-block">
+          <view class="score">{{company.chokepointScore}}</view>
+          <view class="score-label">score</view>
+        </view>
+      </view>
+      <view class="tag-row">
+        <text class="signal">{{company.signal}}</text>
+        <text class="evidence">{{company.evidenceLevel}}</text>
+        <text wx:if="{{sector}}" class="sector-tag">{{sector.name}}</text>
+      </view>
+      <view class="thesis">{{company.thesis}}</view>
+    </view>
+
+    <view class="section-title">四维拆解</view>
+    <view class="metric-list">
+      <view class="metric panel" wx:for="{{metrics}}" wx:key="key">
+        <view class="metric-head">
+          <view>{{item.name}}</view>
+          <text>{{item.score}}</text>
+        </view>
+        <view class="bar-track"><view class="bar-fill" style="width: {{item.score}}%;"></view></view>
+      </view>
+    </view>
+
+    <view class="section-title">核心风险</view>
+    <view class="risk-panel panel">
+      <view class="risk-item" wx:for="{{risks}}" wx:key="*this">
+        <text class="risk-dot"></text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+
+    <view class="section-title">观察理由</view>
+    <view class="note panel">
+      <view class="note-label">下一步跟踪</view>
+      <view class="note-copy">{{company.nextWatch}}</view>
+    </view>
+
+    <view class="section-title">Beta 权重因素</view>
+    <view class="beta-row">
+      <text class="beta" wx:for="{{betaFactors}}" wx:key="*this">{{item}}</text>
+    </view>
+  </block>
+</view>

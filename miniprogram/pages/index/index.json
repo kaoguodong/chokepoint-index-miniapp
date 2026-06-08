@@ -1,3 +1,5 @@
 {
+  "navigationBarTitleText": "卡脖子指数",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

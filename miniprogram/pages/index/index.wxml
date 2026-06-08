@@ -1,23 +1,90 @@
-<!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
+<view class="container dashboard">
+  <view class="hero panel">
+    <view class="hero-top">
+      <view>
+        <view class="eyebrow">AI SUPPLY CHAIN WATCH</view>
+        <view class="title">卡脖子指数</view>
       </view>
-      <open-data type="userNickName"></open-data>
+      <view class="source-badge {{sourceClass}}">{{sourceLabel}}</view>
+    </view>
+
+    <block wx:if="{{loading}}">
+      <view class="loading">正在扫描关键瓶颈...</view>
     </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+
+    <block wx:elif="{{indexData}}">
+      <view class="score-row">
+        <view class="score-ring">
+          <text class="score-number">{{indexData.indexScore}}</text>
+          <text class="score-unit">/100</text>
+        </view>
+        <view class="score-copy">
+          <view class="score-label">综合 chokepoint score</view>
+          <view class="score-summary">{{indexData.summary}}</view>
+          <view class="asof">更新：{{indexData.asOf}} · {{indexData.sourceName}}</view>
+        </view>
+      </view>
+
+      <view class="actions">
+        <view class="btn-primary" bindtap="goSectors">查看细分板块</view>
+        <view class="btn-ghost">研究信号非投资建议</view>
+      </view>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+
+  <block wx:if="{{!loading && indexData}}">
+    <view class="section-head">
+      <view>
+        <view class="section-title">四维压力</view>
+        <view class="section-subtitle">稀缺、政策、盈利、研发壁垒</view>
+      </view>
+    </view>
+
+    <view class="pillar-grid">
+      <view class="pillar panel" wx:for="{{indexData.pillars}}" wx:key="key">
+        <view class="pillar-score">{{item.score}}</view>
+        <view class="pillar-name">{{item.name}}</view>
+        <view class="pillar-desc">{{item.description}}</view>
+        <view class="bar-track"><view class="bar-fill" style="width: {{item.score}}%;"></view></view>
+      </view>
+    </view>
+
+    <view class="section-head">
+      <view>
+        <view class="section-title">Top 标的雷达</view>
+        <view class="section-subtitle">按 chokepoint score 排序</view>
+      </view>
+    </view>
+
+    <view class="company-list">
+      <view class="company-card panel" wx:for="{{topCompanies}}" wx:key="id" data-id="{{item.id}}" bindtap="goCompany">
+        <view class="company-main">
+          <view>
+            <view class="ticker">{{item.ticker}}</view>
+            <view class="company-name">{{item.name}}</view>
+            <view class="role muted">{{item.role}}</view>
+          </view>
+          <view class="company-score">{{item.chokepointScore}}</view>
+        </view>
+        <view class="tag-row">
+          <text class="signal">{{item.signal}}</text>
+          <text class="evidence">{{item.evidenceLevel}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-head">
+      <view>
+        <view class="section-title">今日关注</view>
+        <view class="section-subtitle">触发指数变化的催化因子</view>
+      </view>
+    </view>
+
+    <view class="watch-list panel">
+      <view class="watch-item" wx:for="{{watchlist}}" wx:key="*this">
+        <text class="watch-dot"></text>
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </block>
 </view>

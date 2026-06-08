@@ -1,0 +1,198 @@
+.company-page {
+  padding-bottom: 64rpx;
+}
+
+.loading,
+.empty {
+  padding: 34rpx;
+  color: #9aa4b2;
+}
+
+.empty-title {
+  color: #fff8e8;
+  font-size: 36rpx;
+  font-weight: 900;
+}
+
+.empty-copy {
+  margin-top: 14rpx;
+  color: #9aa4b2;
+  font-size: 26rpx;
+}
+
+.hero {
+  padding: 32rpx;
+}
+
+.hero-top,
+.metric-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticker {
+  color: #f5c76a;
+  font-size: 28rpx;
+  font-weight: 900;
+  letter-spacing: 3rpx;
+}
+
+.name {
+  margin-top: 8rpx;
+  color: #fff8e8;
+  font-size: 44rpx;
+  font-weight: 900;
+}
+
+.role {
+  max-width: 470rpx;
+  margin-top: 10rpx;
+  color: #aab4c2;
+  font-size: 24rpx;
+  line-height: 1.45;
+}
+
+.score-block {
+  text-align: right;
+}
+
+.score {
+  color: #f5c76a;
+  font-size: 72rpx;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.score-label {
+  margin-top: 6rpx;
+  color: #8d99a8;
+  font-size: 22rpx;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+  margin-top: 28rpx;
+}
+
+.signal,
+.evidence,
+.sector-tag,
+.beta {
+  padding: 9rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.signal {
+  color: #64d89a;
+  background: rgba(100, 216, 154, 0.1);
+}
+
+.evidence {
+  color: #f5c76a;
+  background: rgba(245, 199, 106, 0.1);
+}
+
+.sector-tag,
+.beta {
+  color: #c7d0dc;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.thesis {
+  margin-top: 28rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.08);
+  color: #fff2e5;
+  font-size: 27rpx;
+  line-height: 1.65;
+}
+
+.section-title {
+  margin: 42rpx 4rpx 20rpx;
+  color: #fff8e8;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.metric-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.metric {
+  padding: 24rpx;
+}
+
+.metric-head {
+  color: #fff8e8;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.metric-head text {
+  color: #f5c76a;
+  font-size: 32rpx;
+  font-weight: 900;
+}
+
+.bar-track {
+  height: 12rpx;
+  margin-top: 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #ff795f 0%, #f5c76a 100%);
+}
+
+.risk-panel,
+.note {
+  padding: 26rpx;
+}
+
+.risk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14rpx;
+  padding: 12rpx 0;
+  color: #c7d0dc;
+  font-size: 25rpx;
+  line-height: 1.45;
+}
+
+.risk-dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 12rpx;
+  border-radius: 50%;
+  background: #ff795f;
+}
+
+.note-label {
+  color: #f5c76a;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.note-copy {
+  margin-top: 10rpx;
+  color: #fff2e5;
+  font-size: 26rpx;
+  line-height: 1.58;
+}
+
+.beta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}

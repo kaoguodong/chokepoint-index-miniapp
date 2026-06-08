@@ -1,10 +1,65 @@
-/**app.wxss**/
+page {
+  min-height: 100%;
+  color: #f6efe0;
+  background: #090c10;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+}
+
 .container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
+  min-height: 100vh;
   box-sizing: border-box;
-} 
+  padding: 32rpx;
+  background:
+    radial-gradient(circle at 18% 4%, rgba(219, 171, 88, 0.18), transparent 34%),
+    radial-gradient(circle at 92% 8%, rgba(238, 78, 52, 0.16), transparent 28%),
+    linear-gradient(180deg, #121821 0%, #090c10 46%, #111111 100%);
+}
+
+.panel {
+  border: 1rpx solid rgba(224, 177, 95, 0.2);
+  border-radius: 32rpx;
+  background: rgba(16, 22, 30, 0.78);
+  box-shadow: 0 24rpx 80rpx rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18rpx);
+}
+
+.muted {
+  color: #9aa4b2;
+}
+
+.gold {
+  color: #f5c76a;
+}
+
+.danger {
+  color: #ff795f;
+}
+
+.safe {
+  color: #64d89a;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 76rpx;
+  padding: 0 30rpx;
+  border-radius: 999rpx;
+  color: #211506;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f7d77f 0%, #c58b36 100%);
+  box-shadow: 0 14rpx 34rpx rgba(197, 139, 54, 0.28);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 76rpx;
+  padding: 0 30rpx;
+  border: 1rpx solid rgba(245, 199, 106, 0.28);
+  border-radius: 999rpx;
+  color: #f5c76a;
+  background: rgba(245, 199, 106, 0.06);
+}

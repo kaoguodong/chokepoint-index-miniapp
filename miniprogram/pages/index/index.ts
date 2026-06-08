@@ -1,49 +1,79 @@
-// index.ts
-// 获取应用实例
-const app = getApp<IAppOption>()
+import { loadChokepointIndexData } from '../../services/indexData'
+import { ChokepointIndexData, CompanyScore, DataSourceState, SectorScore } from '../../types/index-data'
+
+interface DashboardData {
+  loading: boolean
+  sourceLabel: string
+  sourceClass: string
+  indexData: ChokepointIndexData | null
+  sectors: SectorScore[]
+  topCompanies: CompanyScore[]
+  watchlist: string[]
+}
+
+function getSourceClass(source: DataSourceState): string {
+  if (source === 'remote') {
+    return 'source-remote'
+  }
+  if (source === 'fallback') {
+    return 'source-fallback'
+  }
+  return 'source-local'
+}
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
-  },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs',
-    })
-  },
+    loading: true,
+    sourceLabel: '加载中',
+    sourceClass: 'source-local',
+    indexData: null,
+    sectors: [],
+    topCompanies: [],
+    watchlist: [],
+  } as DashboardData,
+
   onLoad() {
-    // @ts-ignore
-    if (wx.getUserProfile) {
+    this.loadDashboard()
+  },
+
+  onPullDownRefresh() {
+    this.loadDashboard().finally(() => wx.stopPullDownRefresh())
+  },
+
+  async loadDashboard() {
+    this.setData({ loading: true })
+
+    try {
+      const loaded = await loadChokepointIndexData()
+      const topCompanies = loaded.data.companies
+        .slice()
+        .sort((left, right) => right.chokepointScore - left.chokepointScore)
+        .slice(0, 4)
+
       this.setData({
-        canIUseGetUserProfile: true
+        loading: false,
+        sourceLabel: loaded.message,
+        sourceClass: getSourceClass(loaded.source),
+        indexData: loaded.data,
+        sectors: loaded.data.sectors,
+        topCompanies,
+        watchlist: loaded.data.watchlist,
       })
+    } catch (error) {
+      this.setData({ loading: false })
+      wx.showToast({ title: '数据加载失败', icon: 'none' })
     }
   },
-  getUserProfile() {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
+
+  goSectors() {
+    wx.navigateTo({ url: '/pages/sectors/index' })
   },
-  getUserInfo(e: any) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  }
+
+  goCompany(event: WechatMiniprogram.TouchEvent) {
+    const id = String(event.currentTarget.dataset.id || '')
+    if (!id) {
+      return
+    }
+    wx.navigateTo({ url: `/pages/company/index?id=${id}` })
+  },
 })

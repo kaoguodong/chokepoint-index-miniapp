@@ -1,19 +1,279 @@
-/**index.wxss**/
-.userinfo {
+.dashboard {
+  padding-bottom: 64rpx;
+}
+
+.hero {
+  padding: 34rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -120rpx;
+  top: -120rpx;
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+  background: rgba(245, 199, 106, 0.12);
+}
+
+.hero-top,
+.score-row,
+.company-main,
+.section-head,
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  color: #f5c76a;
+  font-size: 22rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+}
+
+.title {
+  margin-top: 10rpx;
+  color: #fff8e8;
+  font-size: 56rpx;
+  font-weight: 900;
+}
+
+.source-badge {
+  padding: 12rpx 18rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.source-local {
+  color: #f5c76a;
+  background: rgba(245, 199, 106, 0.12);
+}
+
+.source-remote {
+  color: #64d89a;
+  background: rgba(100, 216, 154, 0.12);
+}
+
+.source-fallback {
+  color: #ffaf6f;
+  background: rgba(255, 175, 111, 0.14);
+}
+
+.loading {
+  margin-top: 60rpx;
+  color: #9aa4b2;
+  font-size: 28rpx;
+}
+
+.score-row {
+  position: relative;
+  z-index: 1;
+  gap: 28rpx;
+  margin-top: 42rpx;
+}
+
+.score-ring {
+  flex: 0 0 188rpx;
+  width: 188rpx;
+  height: 188rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #aaa;
-}
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+  justify-content: center;
+  border: 4rpx solid rgba(245, 199, 106, 0.66);
   border-radius: 50%;
+  background: linear-gradient(145deg, rgba(245, 199, 106, 0.22), rgba(255, 255, 255, 0.03));
+  box-shadow: inset 0 0 40rpx rgba(245, 199, 106, 0.12);
 }
 
-.usermotto {
-  margin-top: 200px;
+.score-number {
+  color: #f5c76a;
+  font-size: 66rpx;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.score-unit {
+  margin-top: 4rpx;
+  color: #9aa4b2;
+  font-size: 22rpx;
+}
+
+.score-copy {
+  flex: 1;
+}
+
+.score-label {
+  color: #fff8e8;
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.score-summary {
+  margin-top: 12rpx;
+  color: #c7d0dc;
+  font-size: 24rpx;
+  line-height: 1.65;
+}
+
+.asof {
+  margin-top: 14rpx;
+  color: #7f8b99;
+  font-size: 22rpx;
+}
+
+.actions {
+  position: relative;
+  z-index: 1;
+  justify-content: flex-start;
+  gap: 20rpx;
+  margin-top: 34rpx;
+}
+
+.section-head {
+  margin: 44rpx 4rpx 20rpx;
+}
+
+.section-title {
+  color: #fff8e8;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.section-subtitle {
+  margin-top: 6rpx;
+  color: #8d99a8;
+  font-size: 24rpx;
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18rpx;
+}
+
+.pillar {
+  padding: 24rpx;
+}
+
+.pillar-score {
+  color: #f5c76a;
+  font-size: 42rpx;
+  font-weight: 900;
+}
+
+.pillar-name {
+  margin-top: 6rpx;
+  color: #fff8e8;
+  font-size: 28rpx;
+  font-weight: 800;
+}
+
+.pillar-desc {
+  min-height: 72rpx;
+  margin-top: 8rpx;
+  color: #8d99a8;
+  font-size: 22rpx;
+  line-height: 1.5;
+}
+
+.bar-track {
+  height: 10rpx;
+  margin-top: 20rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #ff795f 0%, #f5c76a 100%);
+}
+
+.company-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.company-card {
+  padding: 26rpx;
+}
+
+.ticker {
+  color: #f5c76a;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+.company-name {
+  margin-top: 4rpx;
+  color: #fff8e8;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.role {
+  max-width: 460rpx;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+}
+
+.company-score {
+  color: #fff8e8;
+  font-size: 52rpx;
+  font-weight: 900;
+}
+
+.tag-row {
+  display: flex;
+  gap: 14rpx;
+  margin-top: 20rpx;
+}
+
+.signal,
+.evidence {
+  padding: 8rpx 14rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+}
+
+.signal {
+  color: #64d89a;
+  background: rgba(100, 216, 154, 0.1);
+}
+
+.evidence {
+  color: #f5c76a;
+  background: rgba(245, 199, 106, 0.1);
+}
+
+.watch-list {
+  padding: 24rpx;
+}
+
+.watch-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14rpx;
+  padding: 14rpx 0;
+  color: #c7d0dc;
+  font-size: 25rpx;
+  line-height: 1.45;
+}
+
+.watch-dot {
+  width: 12rpx;
+  height: 12rpx;
+  margin-top: 12rpx;
+  border-radius: 50%;
+  background: #ff795f;
+  box-shadow: 0 0 18rpx rgba(255, 121, 95, 0.7);
 }

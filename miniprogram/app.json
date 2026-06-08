@@ -1,13 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/sectors/index",
+    "pages/company/index",
     "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#0d1117",
+    "navigationBarTitleText": "卡脖子指数",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0d1117"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

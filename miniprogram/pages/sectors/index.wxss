@@ -1,0 +1,180 @@
+.sectors-page {
+  padding-bottom: 64rpx;
+}
+
+.header {
+  padding: 32rpx;
+}
+
+.eyebrow {
+  color: #f5c76a;
+  font-size: 22rpx;
+  font-weight: 800;
+  letter-spacing: 4rpx;
+}
+
+.title {
+  margin-top: 10rpx;
+  color: #fff8e8;
+  font-size: 48rpx;
+  font-weight: 900;
+}
+
+.subtitle {
+  margin-top: 14rpx;
+  color: #aab4c2;
+  font-size: 25rpx;
+  line-height: 1.6;
+}
+
+.source {
+  display: inline-flex;
+  margin-top: 20rpx;
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  color: #f5c76a;
+  font-size: 22rpx;
+  background: rgba(245, 199, 106, 0.1);
+}
+
+.loading {
+  margin-top: 24rpx;
+  padding: 34rpx;
+  color: #9aa4b2;
+}
+
+.sector-tabs {
+  margin: 28rpx 0 22rpx;
+  white-space: nowrap;
+}
+
+.tab-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.sector-tab {
+  display: inline-flex;
+  align-items: center;
+  height: 68rpx;
+  padding: 0 26rpx;
+  border: 1rpx solid rgba(245, 199, 106, 0.18);
+  border-radius: 999rpx;
+  color: #aab4c2;
+  font-size: 25rpx;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.sector-tab.active {
+  color: #211506;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f7d77f, #c58b36);
+}
+
+.sector-detail {
+  padding: 30rpx;
+}
+
+.sector-score-row,
+.company-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sector-name {
+  color: #fff8e8;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.sector-trend {
+  margin-top: 8rpx;
+  color: #64d89a;
+  font-size: 24rpx;
+}
+
+.sector-score {
+  color: #f5c76a;
+  font-size: 62rpx;
+  font-weight: 900;
+}
+
+.sector-desc {
+  margin-top: 22rpx;
+  color: #c7d0dc;
+  font-size: 25rpx;
+  line-height: 1.6;
+}
+
+.bottleneck-box {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 121, 95, 0.1);
+}
+
+.box-label {
+  color: #ff795f;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.box-copy {
+  margin-top: 8rpx;
+  color: #fff2e5;
+  font-size: 25rpx;
+  line-height: 1.55;
+}
+
+.section-title {
+  margin: 42rpx 4rpx 20rpx;
+  color: #fff8e8;
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.company-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.company-card {
+  padding: 26rpx;
+}
+
+.ticker {
+  color: #f5c76a;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+.company-name {
+  margin-top: 4rpx;
+  color: #fff8e8;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.role {
+  max-width: 470rpx;
+  margin-top: 8rpx;
+  color: #9aa4b2;
+  font-size: 22rpx;
+}
+
+.right-score {
+  text-align: right;
+  color: #f5c76a;
+  font-size: 48rpx;
+  font-weight: 900;
+}
+
+.right-score text {
+  display: block;
+  margin-top: 4rpx;
+  color: #64d89a;
+  font-size: 22rpx;
+  font-weight: 700;
+}

@@ -1,0 +1,58 @@
+<view class="container sectors-page">
+  <view class="header panel">
+    <view class="eyebrow">BOTTLENECK LANES</view>
+    <view class="title">细分板块</view>
+    <view class="subtitle">按供应稀缺、政策敏感、盈利韧性、研发壁垒观察链条压力。</view>
+    <view class="source">{{sourceLabel}}</view>
+  </view>
+
+  <block wx:if="{{loading}}">
+    <view class="loading panel">正在加载板块地图...</view>
+  </block>
+
+  <block wx:else>
+    <scroll-view class="sector-tabs" scroll-x="true" enhanced="true" show-scrollbar="false">
+      <view class="tab-row">
+        <view
+          wx:for="{{sectors}}"
+          wx:key="id"
+          class="sector-tab {{selectedSectorId === item.id ? 'active' : ''}}"
+          data-id="{{item.id}}"
+          bindtap="selectSector"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+
+    <view wx:if="{{selectedSector}}" class="sector-detail panel">
+      <view class="sector-score-row">
+        <view>
+          <view class="sector-name">{{selectedSector.name}}</view>
+          <view class="sector-trend">趋势：{{selectedSector.trend}}</view>
+        </view>
+        <view class="sector-score">{{selectedSector.score}}</view>
+      </view>
+      <view class="sector-desc">{{selectedSector.description}}</view>
+      <view class="bottleneck-box">
+        <view class="box-label">主瓶颈</view>
+        <view class="box-copy">{{selectedSector.bottleneck}}</view>
+      </view>
+    </view>
+
+    <view class="section-title">板块标的</view>
+    <view class="company-list">
+      <view class="company-card panel" wx:for="{{filteredCompanies}}" wx:key="id" data-id="{{item.id}}" bindtap="goCompany">
+        <view>
+          <view class="ticker">{{item.ticker}}</view>
+          <view class="company-name">{{item.name}}</view>
+          <view class="role">{{item.role}}</view>
+        </view>
+        <view class="right-score">
+          <view>{{item.chokepointScore}}</view>
+          <text>{{item.signal}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
