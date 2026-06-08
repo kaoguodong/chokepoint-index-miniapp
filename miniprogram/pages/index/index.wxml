@@ -51,6 +51,57 @@
 
     <view class="section-head">
       <view>
+        <view class="section-title">供应推理地图</view>
+        <view class="section-subtitle">周期越长、供应越少，节点越红越亮</view>
+      </view>
+    </view>
+
+    <view class="supply-map panel">
+      <view class="map-grid">
+        <view class="map-axis x-axis">供应周期 →</view>
+        <view class="map-axis y-axis">供应量↓</view>
+        <view
+          wx:for="{{supplyNodes}}"
+          wx:key="id"
+          class="map-node {{item.stressLevel}}"
+          style="{{item.markerStyle}}"
+          data-id="{{item.id}}"
+          bindtap="selectSupplyNode"
+        >
+          <view class="node-pulse"></view>
+          <view class="node-core"></view>
+          <view class="node-label">{{item.name}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{selectedSupplyNode}}" class="node-detail">
+        <view class="node-detail-head">
+          <view>
+            <view class="node-title">{{selectedSupplyNode.name}}</view>
+            <view class="node-layer">{{selectedSupplyNode.layer}} · {{selectedSupplyNode.levelLabel}}</view>
+          </view>
+          <view class="risk-score">{{selectedSupplyNode.riskScore}}</view>
+        </view>
+        <view class="signal-grid">
+          <view>
+            <text>供应周期</text>
+            <strong>{{selectedSupplyNode.leadTimeWeeks}}周</strong>
+          </view>
+          <view>
+            <text>供应量</text>
+            <strong>{{selectedSupplyNode.supplyIndex}}/100</strong>
+          </view>
+          <view>
+            <text>需求压力</text>
+            <strong>{{selectedSupplyNode.demandPressure}}</strong>
+          </view>
+        </view>
+        <view class="reason">{{selectedSupplyNode.reason}}</view>
+      </view>
+    </view>
+
+    <view class="section-head">
+      <view>
         <view class="section-title">Top 标的雷达</view>
         <view class="section-subtitle">按 chokepoint score 排序</view>
       </view>

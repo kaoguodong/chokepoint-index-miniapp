@@ -25,6 +25,22 @@ export interface SectorScore {
   companies: string[]
 }
 
+export type SupplyStressLevel = 'normal' | 'watch' | 'tight' | 'critical'
+
+export interface SupplyMapNode {
+  id: string
+  name: string
+  layer: string
+  leadTimeWeeks: number
+  supplyIndex: number
+  demandPressure: number
+  riskScore: number
+  stressLevel: SupplyStressLevel
+  reason: string
+  x: number
+  y: number
+}
+
 export interface CompanyScore {
   id: string
   ticker: string
@@ -49,6 +65,7 @@ export interface ChokepointIndexData {
   pillars: PillarScore[]
   sectors: SectorScore[]
   companies: CompanyScore[]
+  supplyMap?: SupplyMapNode[]
   watchlist: string[]
 }
 

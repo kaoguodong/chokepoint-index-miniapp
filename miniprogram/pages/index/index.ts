@@ -1,5 +1,16 @@
 import { loadChokepointIndexData } from '../../services/indexData'
-import { ChokepointIndexData, CompanyScore, DataSourceState, SectorScore } from '../../types/index-data'
+import {
+  ChokepointIndexData,
+  CompanyScore,
+  DataSourceState,
+  SectorScore,
+  SupplyMapNode,
+} from '../../types/index-data'
+
+interface SupplyMapNodeView extends SupplyMapNode {
+  markerStyle: string
+  levelLabel: string
+}
 
 interface DashboardData {
   loading: boolean
@@ -8,6 +19,8 @@ interface DashboardData {
   indexData: ChokepointIndexData | null
   sectors: SectorScore[]
   topCompanies: CompanyScore[]
+  supplyNodes: SupplyMapNodeView[]
+  selectedSupplyNode: SupplyMapNodeView | null
   watchlist: string[]
 }
 
@@ -21,6 +34,24 @@ function getSourceClass(source: DataSourceState): string {
   return 'source-local'
 }
 
+function getStressLabel(level: SupplyMapNode['stressLevel']): string {
+  const labelMap: Record<SupplyMapNode['stressLevel'], string> = {
+    normal: '正常',
+    watch: '观察',
+    tight: '偏紧',
+    critical: '紧缺',
+  }
+  return labelMap[level]
+}
+
+function buildSupplyNodeViews(nodes: SupplyMapNode[] = []): SupplyMapNodeView[] {
+  return nodes.map((node) => ({
+    ...node,
+    levelLabel: getStressLabel(node.stressLevel),
+    markerStyle: `left: ${node.x}%; top: ${node.y}%;`,
+  }))
+}
+
 Page({
   data: {
     loading: true,
@@ -29,6 +60,8 @@ Page({
     indexData: null,
     sectors: [],
     topCompanies: [],
+    supplyNodes: [],
+    selectedSupplyNode: null,
     watchlist: [],
   } as DashboardData,
 
@@ -49,6 +82,7 @@ Page({
         .slice()
         .sort((left, right) => right.chokepointScore - left.chokepointScore)
         .slice(0, 4)
+      const supplyNodes = buildSupplyNodeViews(loaded.data.supplyMap)
 
       this.setData({
         loading: false,
@@ -57,6 +91,8 @@ Page({
         indexData: loaded.data,
         sectors: loaded.data.sectors,
         topCompanies,
+        supplyNodes,
+        selectedSupplyNode: supplyNodes[0] || null,
         watchlist: loaded.data.watchlist,
       })
     } catch (error) {
@@ -75,5 +111,11 @@ Page({
       return
     }
     wx.navigateTo({ url: `/pages/company/index?id=${id}` })
+  },
+
+  selectSupplyNode(event: WechatMiniprogram.TouchEvent) {
+    const id = String(event.currentTarget.dataset.id || '')
+    const selectedSupplyNode = this.data.supplyNodes.find((node) => node.id === id) || null
+    this.setData({ selectedSupplyNode })
   },
 })

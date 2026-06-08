@@ -7,6 +7,7 @@
 - 指数总览：综合 chokepoint score、四维压力、今日关注。
 - 细分板块：按供应链环节查看瓶颈描述和相关标的。
 - 标的详情：展示评分拆解、证据等级、风险标签和观察理由。
+- 供应推理地图：用节点热力展示供应周期、供应量、需求压力和瓶颈风险。
 - 可配置数据源：默认本地示例；可在 `miniprogram/config/dataSource.ts` 配置远程 JSON URL，失败自动回退本地。
 
 ## 开发
@@ -17,4 +18,4 @@
 
 ## 远程数据最小结构
 
-远程 JSON 需包含：`asOf`、`sourceName`、`indexScore`、`summary`、`pillars`、`sectors`、`companies`、`watchlist`。
+远程 JSON 需包含：`asOf`、`sourceName`、`indexScore`、`summary`、`pillars`、`sectors`、`companies`、`watchlist`；可选 `supplyMap` 用于供应推理地图。
